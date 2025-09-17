@@ -1,0 +1,68 @@
+# Report Tecnico: Attacco Ransomware Conti contro HSE (Irlanda, 2021)
+
+## Introduzione
+Nel maggio 2021 il sistema sanitario nazionale irlandese (HSE – Health Service Executive) è stato colpito da un grave attacco ransomware del gruppo Conti. È considerato uno degli incidenti più critici avvenuti in Europa, sia per l’impatto sulla popolazione che per le carenze evidenziate nelle difese informatiche.  
+Ho scelto di analizzarlo perché dimostra come un singolo evento iniziale, se non contenuto, possa degenerare in un incidente nazionale.
+
+## Contesto
+L’HSE gestisce ospedali e cliniche in tutta l’Irlanda. L’infrastruttura IT presentava sistemi legacy, antivirus in modalità passiva (monitor-only) e mancanza di segmentazione di rete.  
+Il **PwC Independent Post Incident Review**, commissionato dal governo irlandese, ha evidenziato che gli attaccanti erano presenti già a marzo 2021, due mesi prima della cifratura.
+
+## Timeline dell’attacco
+- **16 marzo 2021** – Email di phishing con allegato Excel malevolo.  
+- **18 marzo 2021** – L’allegato viene aperto: compromissione iniziale (“patient zero”).  
+- **31 marzo 2021** – Antivirus rileva attività sospette (Cobalt Strike, Mimikatz) ma non interviene.  
+- **7 maggio 2021** – Gli attaccanti iniziano movimento laterale verso più server.  
+- **14 maggio 2021** – Esecuzione massiva del ransomware Conti, blocco dei sistemi nazionali.  
+- **21 maggio 2021** – Riscatto richiesto: circa 16,5 milioni di euro.  
+- **Luglio 2021** – ~80% dei server ripristinati.  
+- **Settembre 2021** – Recupero quasi totale.
+
+Fonti: [PwC Report](https://www.hse.ie/eng/services/publications/conti-cyber-attack-on-the-hse-full-report.pdf), [Irish Times](https://www.irishtimes.com/news/crime-and-law/timeline-to-a-cyberattack-the-signs-missed-before-state-s-health-service-crippled-1.4752451), [RTE.ie](https://www.rte.ie/news/analysis-and-comment/2021/0523/1223337-cyber-attack-hse/).
+
+## Tecniche utilizzate
+- **Accesso iniziale**: phishing (Excel malevolo).  
+- **Strumenti**: Cobalt Strike per C2, Mimikatz per rubare credenziali.  
+- **Movimento laterale**: sfruttamento di credenziali privilegiate su più sistemi.  
+- **Payload finale**: ransomware Conti distribuito su larga scala.  
+- **Esfiltrazione**: dati sensibili rubati per aumentare la pressione.
+
+## Impatto
+- Servizi sanitari e laboratori bloccati.  
+- Interruzione della gestione pazienti.  
+- Costi oltre i 100 milioni di euro.  
+- Grave danno reputazionale.  
+- Recovery completo in circa 4 mesi.
+
+## Lezioni apprese
+Dall’analisi emergono tre aspetti principali:
+1. **Monitoraggio passivo non sufficiente**: i rilevamenti senza azione hanno reso inutile la protezione.  
+2. **Lungo dwell time**: gli attaccanti hanno avuto settimane per muoversi indisturbati.  
+3. **Mancata segmentazione**: l’attacco si è diffuso senza barriere interne.
+
+## Azioni Correttive e Preventive
+
+### Correttive (immediate)
+1. Isolare subito endpoint compromessi e bloccare comunicazioni sospette.  
+2. Raccolta forense dei log per ricostruire il movimento laterale.  
+3. Reset completo delle credenziali privilegiate.  
+4. Ripristino da backup offline certificati e testati.  
+
+### Preventive (medio-lungo termine)
+1. **EDR/XDR con risposta automatica**: blocco esecuzioni malevole e isolamento host.  
+2. **Segmentazione Zero Trust** tra reti ospedaliere e server centrali.  
+3. **Vulnerability Management continuo**: patch mensili e scansioni automatizzate.  
+4. **Simulazioni di phishing e training del personale**.  
+5. **Incident Response Plan testato** con tabletop exercise regolari.  
+6. **Backup 3-2-1** con prove di restore periodiche.  
+7. **SOC interno o esterno** con correlazione log e monitoraggio 24/7.
+
+## Conclusione
+L’attacco all’HSE è un esempio emblematico di come una catena di errori tecnici e organizzativi possa amplificare l’impatto di un singolo phishing. Per me, come analista, rappresenta un caso di studio fondamentale su cui costruire competenze pratiche di detection, response e hardening.
+
+## Fonti principali
+- PwC – *Independent Post Incident Review* (2022)  
+- The Irish Times – *Timeline to a Cyberattack* (2021)  
+- RTE.ie – *Cyberattack on HSE* (2021)  
+- TrendMicro – *One Year On: Lessons from the HSE Attack* (2022)  
+- HC3 (US HHS) – *Lessons Learned from the HSE Attack* (2022)  
