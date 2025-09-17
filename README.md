@@ -1,0 +1,1 @@
+# -HSE-Ransomware-2021-studycase
