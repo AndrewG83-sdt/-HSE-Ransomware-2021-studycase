@@ -1,5 +1,4 @@
-# -HSE-Ransomware-2021-studycase
-# Attacco Ransomware Conti contro HSE (Irlanda, 2021)
+# Attacco Ransomware Conti contro HSE (Irlanda, 2021
 
 ##  Descrizione
 Questo repository contiene la mia analisi tecnica dell’attacco ransomware che ha colpito il sistema sanitario irlandese (HSE) nel maggio 2021, condotto dal gruppo Conti.  
@@ -7,7 +6,6 @@ Ho ricostruito la timeline, le tecniche utilizzate dagli attaccanti, l’impatto
 
 ##  Contenuto
 - `REPORT.md` → Report tecnico completo con sezioni: introduzione, timeline, tecniche (TTP), impatto, lezioni apprese, azioni correttive e preventive, conclusione, fonti.  
-- `fonti.txt` → Elenco dei link diretti alle fonti ufficiali e articoli usati per la ricerca.
 
 ##  Punti chiave del report
 - Accesso iniziale tramite **phishing (Excel malevolo)**.  
@@ -25,5 +23,5 @@ Ho ricostruito la timeline, le tecniche utilizzate dagli attaccanti, l’impatto
 
 ---
 
-✍ Autore: **Andrea Giovannoni**  
+ Autore: **Andrea Giovannoni**  
  [LinkedIn](https://www.linkedin.com/in/andrea-giovannoni-253b1b54/)) | [GitHub](https://github.com/AndrewG83-sdt))
